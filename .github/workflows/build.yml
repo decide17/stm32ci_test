@@ -1,20 +1,26 @@
-name: STM32 Build
+name: Build STM32 Project
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      uses: xanderhendriks/action-build-stm32cubeide@v5.0
-      with:
-        project-path: 'stm32ci_test'
-        project-target: 'stm32ci_test'
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build
-        path: |
-          stm32ci_test/Release/stm32ci_test.*
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Build STM32CubeIde project
+        uses: xanderhendriks/action-build-stm32cubeide@v7.2
+        with:
+          project-path: 'stm32ci_test'
+          project-target: 'stm32ci_test'
+          
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: STM32_Firmware
+          path: Release/*.*
