@@ -89,7 +89,7 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
-
+  int a = adfsdfsdf;
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
