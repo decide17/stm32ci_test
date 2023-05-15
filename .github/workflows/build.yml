@@ -17,4 +17,4 @@ jobs:
       with:
         name: build
         path: |
-          stm32ci_test/Release/e4e_sleep_timer_fw.*
+          stm32ci_test/Release/stm32ci_test.*
